@@ -9,6 +9,7 @@ module.exports = {
             ident: 'postcss',
             syntax: 'postcss-scss',
             plugins: [
+              require('@tailwindcss/jit'),
               require('postcss-import'),
               require('tailwindcss'),
               require('autoprefixer'),
