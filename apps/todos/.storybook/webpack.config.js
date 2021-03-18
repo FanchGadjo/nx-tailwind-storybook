@@ -8,6 +8,23 @@ const rootWebpackConfig = require('../../../.storybook/webpack.config');
 module.exports = async ({ config, mode }) => {
   config = await rootWebpackConfig({ config, mode });
 
+  config.module.rules.push({
+    test: /\.scss$/,
+    loader: 'postcss-loader',
+    options: {
+      postcssOptions: {
+        ident: 'postcss',
+        syntax: 'postcss-scss',
+        plugins: [
+          require('@tailwindcss/jit'),
+          require('postcss-import'),
+          require('tailwindcss'),
+          require('autoprefixer'),
+        ],
+      },
+    },
+  })
+
   const tsPaths = new TsconfigPathsPlugin({
     configFile: './tsconfig.base.json',
   });
