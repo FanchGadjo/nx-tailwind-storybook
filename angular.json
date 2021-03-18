@@ -39,16 +39,22 @@
       "prefix": "nx-tailwind",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
+            "extraWebpackConfig": "webpack.config.js",
             "outputPath": "dist/apps/todos",
             "index": "apps/todos/src/index.html",
             "main": "apps/todos/src/main.ts",
             "polyfills": "apps/todos/src/polyfills.ts",
             "tsConfig": "apps/todos/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/todos/src/favicon.ico", "apps/todos/src/assets"],
-            "styles": ["apps/todos/src/styles.scss"],
+            "assets": [
+              "apps/todos/src/favicon.ico",
+              "apps/todos/src/assets"
+            ],
+            "styles": [
+              "apps/todos/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -82,8 +88,9 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "options": {
+            "extraWebpackConfig": "webpack.config.js",
             "browserTarget": "todos:build"
           },
           "configurations": {
@@ -108,9 +115,12 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/todos"],
+          "builder": "ngx-build-plus:karma",
+          "outputs": [
+            "coverage/apps/todos"
+          ],
           "options": {
+            "extraWebpackConfig": "webpack.config.js",
             "jestConfig": "apps/todos/jest.config.js",
             "passWithNoTests": true
           }
@@ -138,7 +148,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/todos-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/todos-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
